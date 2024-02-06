@@ -1,0 +1,14 @@
+name: Create a new Kyma project via Terraform
+
+on:
+  workflow_dispatch:
+
+jobs:
+  execute_regression_test:
+    name: Regression Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup project
+      id: setup_project
+      run: echo "Setting up project"

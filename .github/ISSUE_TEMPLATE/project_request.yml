@@ -1,0 +1,72 @@
+name: 💡Project request
+description: Request a new project on SAP BTP
+title: "[PROJECT REQUEST] - <Name>"
+labels: [project-request]
+body:
+  - type: input
+    id: project_name
+    attributes:
+      label: Project name
+      description: Provide the name of the project you would like to request.
+    validations:
+      required: true  
+  - type: dropdown
+    id: region
+    attributes:
+      label: Region
+      description: Specify the region that you want the project to be created in.
+      options:
+        - eu10
+        - us10
+    validations:
+      required: true
+  - type: input
+    id: cost_center
+    attributes:
+      label: Cost center
+      description: Specify the cost center of the project.
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Stage
+      description: Specify the stage that you want to create the project in.
+      options:
+        - DEV
+        - TST
+        - SBX
+    validations:
+      required: true
+  - type: dropdown
+    id: organization
+    attributes:
+      label: Organization
+      description: Specify the organization the project is assigned to.
+      options:
+        - B2B
+        - B2C
+        - ECOMMERCE
+        - FSIT
+    validations:
+      required: true
+  - type: dropdown
+    id: template
+    attributes:
+      label: template
+      description: Specify the project template to be used. If none is selected, the base template will be used.
+      options:
+        - Base Development
+        - Cloud Foundry Development
+        - Kyma Development
+    validations:
+      required: false        
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: |
+        Add any other context like links or references about the project here.
+
+        Tip: You can attach images or files by clicking this area to highlight it and then dragging files in.
+    validations:
+      required: false

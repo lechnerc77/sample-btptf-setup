@@ -1,0 +1,68 @@
+name: Create a new basis project via Terraform
+
+on:
+  workflow_dispatch:
+    inputs:
+      PROJECT_NAME:
+        description: "Name of the project"
+        required: true
+      REGION:
+        description: "Region for the sub account"
+        default: "eu10"
+        required: true
+      COST_CENTER:
+        description: "Cost center for the project"
+        default: "1234567890"
+        required: true
+      STAGE:
+        description: "Stage for the project"
+        default: "DEV"
+        required: true
+      ORGANIZATION:
+        description: "Organization for the project"
+        default: "B2C"
+        required: true
+
+env:
+  PATH_TO_TFSCRIPT: 'base_dev_template'
+
+
+jobs:
+  execute_base_setuup:
+    name: Project Setup (Basis)
+    runs-on: ubuntu-latest
+    env:
+      PARAM_PROJECT_NAME: ${{ github.event.inputs.PROJECT_NAME }}
+      PARAM_REGION: ${{ github.event.inputs.REGION }}
+      PARAM_COST_CENTER: ${{ github.event.inputs.COST_CENTER }}
+      PARAM_STAGE: ${{ github.event.inputs.STAGE }}
+      PARAM_ORGANIZATION: ${{ github.event.inputs.ORGNAIZATION }}
+
+    steps:
+    - name: Check out Git repository
+      id: checkout_repo
+      uses: actions/checkout@v4
+      
+    - name: Setup Terraform
+      id : setup_terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_wrapper: false
+        terraform_version: latest
+
+    - name: Terraform Init
+      id: terraform_init
+      shell: bash
+      run: |
+        terraform -chdir=${{ env.PATH_TO_TFSCRIPT }} init -no-color
+
+    - name: Terraform Apply 
+      id: terraform_apply
+      shell: bash
+      # We do not store the state - in a real setup we would reference a remote backend to store the state
+      run: |
+        export BTP_USERNAME=${{ secrets.BTP_USERNAME }}
+        export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
+        terraform -chdir=${{ env.PATH_TO_TFSCRIPT }} apply -var globalaccount=${{ secrets.GLOBALACCOUNT }} -var region=${{ env.PARAM_REGION }} -var project_name=${{ env.PARAM_PROJECT_NAME}} -var stage=${{ env.PARAM_STAGE}} -var costcenter=${{ env.PARAM_COST_CENTER}} -var org_name=${{ env.PARAM_ORGANIZATION}} -auto-approve -no-color           
+
+      # Integrate with workflow system to inform the requestor about the status of the project creation
