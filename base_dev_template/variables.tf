@@ -98,7 +98,7 @@ variable "entitlements" {
       amount = null
     },
     {
-      name   = "hana-cloud-trial"
+      name   = "hana-cloud"
       plan   = "hana"
       amount = null
     },
@@ -108,8 +108,8 @@ variable "entitlements" {
       amount = null
     },
     {
-      name   = "sapappstudiotrial"
-      plan   = "trial"
+      name   = "sapappstudio"
+      plan   = "standard-edition"
       amount = null
     }
   ]
@@ -127,8 +127,8 @@ variable "subscriptions" {
   description = "List of app subscriptions to be subscribed to in the subaccount."
   default = [
     {
-      app_name = "sapappstudiotrial"
-      plan     = "trial"
+      app_name = "sapappstudio"
+      plan     = "standard-editionl"
     }
   ]
 }
