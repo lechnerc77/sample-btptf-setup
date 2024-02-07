@@ -36,7 +36,7 @@ jobs:
       PARAM_REGION: ${{ github.event.inputs.REGION }}
       PARAM_COST_CENTER: ${{ github.event.inputs.COST_CENTER }}
       PARAM_STAGE: ${{ github.event.inputs.STAGE }}
-      PARAM_ORGANIZATION: ${{ github.event.inputs.ORGNAIZATION }}
+      PARAM_ORGANIZATION: ${{ github.event.inputs.ORGANIZATION }}
 
     steps:
     - name: Check out Git repository

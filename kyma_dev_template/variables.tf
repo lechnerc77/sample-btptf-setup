@@ -56,7 +56,7 @@ variable "org_name" {
   validation {
     condition = contains(
       // Cross Development
-      ["B2B", "B2C", "ECOMMERCE", "FSIT"], var.org_name)
+    ["B2B", "B2C", "ECOMMERCE", "FSIT"], var.org_name)
     error_message = "Please select a valid org name for the project account."
   }
 }

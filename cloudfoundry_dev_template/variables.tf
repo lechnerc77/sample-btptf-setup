@@ -32,7 +32,7 @@ variable "stage" {
   default     = "DEV"
 
   validation {
-    condition     = contains(["DEV", "TST", "PRD"], var.stage)
+    condition     = contains(["DEV", "TST", "SBX"], var.stage)
     error_message = "Select a valid stage for the project account."
   }
 }
