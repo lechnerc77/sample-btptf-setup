@@ -111,7 +111,12 @@ variable "entitlements" {
       name   = "sapappstudio"
       plan   = "standard-edition"
       amount = null
-    }
+    },
+    {
+      name   = "destination"
+      plan   = "lite"
+      amount = null
+    },
   ]
 }
 

@@ -18,6 +18,7 @@ The basic setup comprises the following resources:
 | Resource name | Technical Name | Plan |  Quota | Entitled only
 | --- | --- | --- | --- | ---
 | Alert Notification Service | `alert-notification` | `standard` | - | no
+| Destination Service | `destination` | `lite` | - | yes
 | SAP Build Workzone Standard Edition | `SAPLaunchpad` | `standard` | - | yes
 | SAP Business Application Studio | `sapappstudio` | `standard-edition` | - | no
 | SAP HANA Cloud | `hana-cloud` | `hana` | - | yes
