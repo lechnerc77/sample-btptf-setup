@@ -128,7 +128,7 @@ variable "subscriptions" {
   default = [
     {
       app_name = "sapappstudio"
-      plan     = "standard-editionl"
+      plan     = "standard-edition"
     }
   ]
 }
